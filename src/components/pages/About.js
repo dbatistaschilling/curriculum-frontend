@@ -1,6 +1,7 @@
 import React from 'react';
 
-const about = (props) => {
+const About = props => {
+  
     return (
         <section className="mh-about" id="mh-about">
             <div className="container">
@@ -13,9 +14,9 @@ const about = (props) => {
                 <div className="col-sm-12 col-md-6">
                 <div className="mh-about-inner">
                     <h2 className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">About Me</h2>
-                    <p className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">Hello, I’m a Patrick, web-developer based on Paris. 
-                    I have rich experience in web site design &amp; building 
-                    and customization. Also I am good at</p>
+                    <p className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
+                        {props.description}
+                    </p>
                     <div className="mh-about-tag wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
                     <ul>
                         <li><span>php</span></li>
@@ -33,7 +34,7 @@ const about = (props) => {
             </div>
             </div>
       </section>
-    );
+   );
 }
 
-export default about;
+export default About;
