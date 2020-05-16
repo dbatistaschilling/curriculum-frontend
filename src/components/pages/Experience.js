@@ -36,7 +36,7 @@ const Experience = (props) => {
                 </div>
                 <div className="col-sm-12 col-md-6">
                     <div className="mh-work">
-                    <h3>Work Experience</h3>
+                    <h3 className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">Work Experience</h3>
                     <div className="mh-experience-deatils">
                         {/* Education Institutes*/}
                         <div className="mh-work-item dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">

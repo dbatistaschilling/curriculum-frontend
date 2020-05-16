@@ -520,8 +520,6 @@ ul {
   background-position: center center; }
 
 .image-bg {
-  background-size: cover;
-  background-size: cover;
   background-repeat: no-repeat;
   margin: 0 auto;
   background-position: center center; }
@@ -535,8 +533,13 @@ ul {
 .featured-img-two {
   background-image: url(../images/extra-feature-bg.jpg); }
 
-.map-image {
-  background-image: url(../images/map-color-overlay.png); }
+.node-image {
+  background-image: url(../images/node.png);
+}
+
+.react-image {
+  background-image: url(../images/react.png);
+}
 
 .mt-30 {
   margin-top: 30px; }
@@ -2681,5 +2684,3 @@ BLOG Pagination
   font-size: 22px;
   line-height: 30px;
   margin-bottom: 30px; }
-
-/*# sourceMappingURL=styles.css.map */

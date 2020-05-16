@@ -40,19 +40,19 @@
     |=====================
     */
     
-    var trigger = $('.navbar-toggler'),
-      overlay     = $('.overlay'),
-      navc     = $('.navbar-collapse'),
-      active      = false;
+    // var trigger = $('.navbar-toggler'),
+    //   overlay     = $('.overlay'),
+    //   navc     = $('.navbar-collapse'),
+    //   active      = false;
   
 
-      $('.navbar-toggler, .navbar-nav li a, .overlay').on('click', function () {
-          $('.navbar-toggler').toggleClass('active')
-        //   $('#js-navbar-menu').toggleClass('active');
-        //   $('.navbar-collapse').toggleClass('show');
-          overlay.toggleClass('active');
-          navc.toggleClass('active');
-      });  
+      // $('.navbar-toggler, .navbar-nav li a, .overlay').on('click', function () {
+      //     $('.navbar-toggler').toggleClass('active')
+      //   //   $('#js-navbar-menu').toggleClass('active');
+      //   //   $('.navbar-collapse').toggleClass('show');
+      //     overlay.toggleClass('active');
+      //     navc.toggleClass('active');
+      // });  
       
         
     /*
@@ -61,12 +61,12 @@
     |================
     */
         
-      $('#mh-header').onePageNav({
-          currentClass: 'active', 
-          changeHash: false,
-          scrollSpeed: 750,
-          scrollThreshold: 0.5,
-      });
+      // $('#mh-header').onePageNav({
+      //     currentClass: 'active', 
+      //     changeHash: false,
+      //     scrollSpeed: 750,
+      //     scrollThreshold: 0.5,
+      // });
     
     /*
     |=================
@@ -82,9 +82,11 @@
     | WOW ANIMATION
     |==================
     */
+
     	var wow = new WOW({
           mobile: false  // trigger animations on mobile devices (default is true)
       });
+
       wow.init();
       
       
@@ -101,14 +103,14 @@
     | NAV FIXED ON SCROLL
     | ==========================
     */
-    $(window).on('scroll', function() {
-        var scroll = $(window).scrollTop();
-        if (scroll >= 50) {
-            $(".nav-scroll").addClass("nav-strict");
-        } else {
-            $(".nav-scroll").removeClass("nav-strict");
-        }
-    });
+    // $(window).on('scroll', function() {
+    //     var scroll = $(window).scrollTop();
+    //     if (scroll >= 50) {
+    //         $(".nav-scroll").addClass("nav-strict");
+    //     } else {
+    //         $(".nav-scroll").removeClass("nav-strict");
+    //     }
+    // });
     
 
     /*
@@ -307,20 +309,31 @@
     
     
     // Smooth Scroll
-        // $(function() {
-        //   $('a[href*=#]:not([href=#])').click(function() {
-        //     if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-        //       var target = $(this.hash);
-        //       target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-        //       if (target.length) {
-        //         $('html,body').animate({
-        //           scrollTop: target.offset().top
-        //         }, 600);
-        //         return false;
-        //       }
-        //     }
-        //   });
-        // });
+    $(document).ready(function(){
+
+        // Add smooth scrolling to all links
+        $("a").on('click', function(event) {
+
+            // Make sure this.hash has a value before overriding default behavior
+            if (this.hash !== "") {
+            // Prevent default anchor click behavior
+            event.preventDefault();
+
+            // Store hash
+            var hash = this.hash;
+
+            // Using jQuery's animate() method to add smooth page scroll
+            // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top
+            }, 800, function(){
+
+                // Add hash (#) to URL when done scrolling (default click behavior)
+                window.location.hash = hash;
+            });
+            } // End if
+        });
+    });
         
         
         

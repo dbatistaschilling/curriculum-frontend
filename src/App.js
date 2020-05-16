@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
 import Navigation from './components/layouts/Navigation';
-import Footer from './components/layouts/Footer';
 
 import Home from './components/pages/Home';
 import About from './components/pages/About';
 import Service from './components/pages/Service';
 import Skill from './components/pages/Skill';
 import Experience from './components/pages/Experience';
+import Contact from './components/pages/Contact';
 
 // import './App.css';
 import axios from './axios';
@@ -51,7 +51,7 @@ class App extends Component {
       <Service />
       <Skill />
       <Experience />
-      <Footer />
+      <Contact />
     </div>
   );
 }
