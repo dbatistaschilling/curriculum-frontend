@@ -45,13 +45,6 @@ class Navigation extends Component {
     return (
   <div>
 
-        <div className="section-loader">
-            <div className="loader">
-                <div></div>
-                <div></div> 
-            </div>
-        </div>
-
         <header className={["black-bg mh-header mh-fixed-nav nav-scroll mh-xs-mobile-nav fadeInUp", 
                               !this.state.onTop ? 'nav-strict' : null].join(' ')} id="mh-header">
           <div  onClick={this.toggleMenu} className={['overlay',  this.state.btnMenu ? 'active' : null].join(' ')} />
@@ -80,10 +73,10 @@ class Navigation extends Component {
                       <a onClick={this.toggleMenu.bind(this)}
                          className="nav-link" href="#mh-experience">Experiences</a>
                     </li>                                
-                    {/* <li className="nav-item">
+                    <li className="nav-item">
                       <a onClick={this.toggleMenu}
                          className="nav-link" href="#mh-portfolio">Portfolio</a>
-                    </li>                                */}
+                    </li>                               
                     {/* <li className="nav-item">
                       <a className="nav-link" href="#mh-pricing">Pricing</a>
                     </li>
