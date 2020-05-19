@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Profile from '../Profile/ProfileShow';
+import Profile from '../profiles/ProfileShow';
 
 const Home = props => {
 

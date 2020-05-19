@@ -4,6 +4,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Main from './components/Main';
 import Admin from './admin/Admin'
 
+
 const App = () => {
 
     return (
@@ -11,7 +12,7 @@ const App = () => {
 			  <BrowserRouter>
           <div>
             <Route path="/" exact component={Main} />
-            <Route path="/login" component={Admin} />
+            <Route path="/admin" component={Admin} />
           </div>
         </BrowserRouter>
       </div>
