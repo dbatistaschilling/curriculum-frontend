@@ -21,7 +21,7 @@ const Login = props => {
         event.preventDefault();
         axios.post(`/login`, login)
             .then(res => {
-                // console.log(res.data);
+                console.log(res.data);
                 props.changeProp({
                     isAuth: true,
                     userId: res.data.userId,

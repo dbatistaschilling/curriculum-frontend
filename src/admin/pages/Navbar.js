@@ -62,7 +62,6 @@ const Navbar = props => {
                             <ul aria-labelledby="dropdownSubMenu1" className="dropdown-menu border-0 shadow">
                                 <li><Link to="/admin/dashboard/profiles" className="dropdown-item">Profile List</Link></li>
                                 <li><Link to="/admin/dashboard/profiles/new" className="dropdown-item">New Profile</Link></li>
-                                <li><Link to="/admin/dashboard/profiles/edit" className="dropdown-item">Edit Profile</Link></li>
                             </ul>
                         </li>
                         <li className="nav-item dropdown">
@@ -72,7 +71,6 @@ const Navbar = props => {
                             <ul aria-labelledby="dropdownSubMenu2" className="dropdown-menu border-0 shadow">
                                 <li><Link to="/admin/dashboard/knowledges" className="dropdown-item">Knowledge List</Link></li>
                                 <li><Link to="/admin/dashboard/knowledges/new" className="dropdown-item">New Knowledge</Link></li>
-                                <li><Link to="/admin/dashboard/knowledges/edit" className="dropdown-item">Edit Knowledge</Link></li>
                             </ul>
                         </li>
                     </ul>

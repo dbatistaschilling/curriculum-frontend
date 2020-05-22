@@ -26,43 +26,33 @@ class Admin extends React.Component {
             userId,
             token
         });
-        localStorage.setItem(this.state.userId, userId);
-        localStorage.setItem(this.state.isAuth, isAuth);
-        localStorage.setItem(this.state.token, token);
-    }
-    
-    authStyle = () => {        
-        if (this.state.currentURL !== `${this.state.clientURL}admin/login` ||
-            this.state.currentURL !== `${this.state.clientURL}admin/signup`){
-                document.body.className=""
-        }
+        localStorage.setItem('userId', userId);
+        localStorage.setItem('isAuth', isAuth);
+        localStorage.setItem('token', token);
     }
 
     onCreation = () => {
-        localStorage.setItem(this.state.userId, false);
-        localStorage.setItem(this.state.isAuth, false);
-        localStorage.setItem(this.state.token, false);
         const location = window.location.href;
         if (location === `${this.state.clientURL}/admin`){
-            this.setState({ currentURL: '/admin/login' })
+            this.setState({ currentURL: location })
             this.props.history.push('/admin/login')    
         }
-
     }
 
     onPageChange = () => {        
-        const location = window.location.href;
-        if (!localStorage.getItem(this.state.isAuth) &&
-            location !== `${this.state.clientURL}/admin/login` &&
-            location !== `${this.state.clientURL}/admin/signup`){
-                document.body.className="bodyLogin";
+        const location = window.location.href;        
+        if (location !== this.state.currentURL){
+            this.setState({ currentURL: location })
+            if (!localStorage.getItem('isAuth') &&
+                location !== `${this.state.clientURL}/admin/login` &&
+                location !== `${this.state.clientURL}/admin/signup`){
                 this.props.history.push('/admin/login')  
+            }
         }
     }
                 
     componentDidMount() {
         // console.log(localStorage.getItem(this.state.isAuth));
-        document.body.className="bodyLogin";
         this.onCreation();
     }
     
@@ -76,12 +66,8 @@ class Admin extends React.Component {
             <div>
                 <Switch>
                     <Route path="/admin/login" exact >
-                        <Login isAuth={this.state.isAuth}
-                                userId={this.state.userId}
-                                token={this.state.token}
-                                changeProp={this.changeProp}
-                                router={this.props.history}
-                                 />
+                        <Login changeProp={this.changeProp}
+                                router={this.props.history} />
                     </Route>
 
                     <Route path="/admin/signup" exact >

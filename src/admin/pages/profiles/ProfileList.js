@@ -1,7 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-const ProfileList = () => {
+import { getProfiles } from '../handlers/ProfileActions';
+
+const ProfileList = props => {
+
+  const [page, setPage] = useState(1)
+  const [profileCollection, setProfileCollection] = useState([])
+  const [isLoading, setisLoading] = useState(true)
+
+
+  const loadMoreProfiles = () => {
+    setPage(page + 1);
+  };
+
+  useEffect(() => {
+    getProfiles(`?page=${page}&per-page=10&sortby=createdAt_DESC`, profileCollection, setProfileCollection, setisLoading)
+  }, [page]);
+
+
 	return (
         <div className="content-wrapper">
             {/* Content Header (Page header) */}
@@ -32,45 +49,42 @@ const ProfileList = () => {
                   <table className="table table-striped projects">
                     <thead>
                       <tr>
-                        <th style={{ width: "1%" }}>ID</th>
-                        <th style={{ width: "30%" }}>Profile Name</th>
+                        <th style={{ width: "20%" }}>Profile Name</th>
                         <th style={{ width: "20%" }}>Email</th>
-                        <th style={{ width: "8%" }} className="text-center">
-                          Status
-                        </th>
-                        <th style={{ width: "30%" }}></th>
+                        <th style={{ width: "8%" }} className="text-center">Phone</th>
+                        <th style={{ width: "20%", float: 'right' }}>Actions</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>1</td>
+                      {profileCollection.map((profile, index) => (
+                        <tr key={profile._id}>
                         <td>
-                          Davi
+                          { profile.name}
                           <br />
-                          <small>Created 01.01.2019</small>
+                          <small>{profile.createdAt}</small>
                         </td>
                         <td>
-                          Example@gmail.com
+                          {profile.email}
                         </td>
-
                         <td className="project-state">
-                          <span className="badge badge-success">Active</span>
+                          {profile.phone}
                         </td>
-                        <td className="project-actions text-right">
-                          <Link className="btn btn-primary btn-sm" style={{marginLeft: '2px', marginRight: '2px'}} to="#">
+                        <td className="project-actions text-right" style={{marginLeft:'auto', marginRight:'auto', display:'block'}}>
+                          <Link className="btn btn-primary btn-sm" style={{marginLeft: '15px', marginRight: '15px'}} to={`/admin/dashboard/profiles/${profile._id}`}>
                             <i className="fas fa-folder"></i>
                             View
                           </Link>
-                          <Link className="btn btn-info btn-sm" style={{marginLeft: '2px', marginRight: '2px'}} to="#">
+                          <Link className="btn btn-info btn-sm" style={{marginLeft: '15px', marginRight: '15px'}} to={`/admin/dashboard/profiles/edit/${profile._id}`}>
                             <i className="fas fa-pencil-alt"></i>
                             Edit
                           </Link>
-                          <Link className="btn btn-danger btn-sm" style={{marginLeft: '2px', marginRight: '2px'}} to="#">
+                          <div type='button' className="btn btn-danger btn-sm" style={{marginLeft: '15px', marginRight: '15px'}} to={`/admin/dashboard/profiles/delete/${profile._id}`}>
                             <i className="fas fa-trash"></i>
                             Delete
-                          </Link>
+                          </div>
                         </td>
                       </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
