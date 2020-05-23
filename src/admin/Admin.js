@@ -33,9 +33,11 @@ class Admin extends React.Component {
 
     onCreation = () => {
         const location = window.location.href;
-        if (location === `${this.state.clientURL}/admin`){
-            this.setState({ currentURL: location })
-            this.props.history.push('/admin/login')    
+        this.setState({ currentURL: location })
+        if (location === `${this.state.clientURL}/admin` && !localStorage.getItem('isAuth')){
+            this.props.history.push('/admin/login');  
+        } else if (location === `${this.state.clientURL}/admin` && localStorage.getItem('isAuth')){
+            this.props.history.push('/admin/dashboard');  
         }
     }
 

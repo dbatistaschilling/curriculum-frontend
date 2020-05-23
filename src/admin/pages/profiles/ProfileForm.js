@@ -1,28 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation  } from 'react-router-dom';
 
-import { createProfileOnSubmit } from '../handlers/ProfileActions';
+import { createProfileOnSubmit, getProfile, updateProfileOnSubmit } from '../handlers/ProfileActions';
 
 const ProfileForm = props => {
-
-    // if (location.pathname.includes('new')){
-
-    // } else {
-        
-    // }
-
-    // const [profile, setProfile] = useState({});
-    // const [address, setAddress] = useState({});
-    // const [birthAddress, setBirthAddress] = useState({});
-    // const [isloading, setIsloading] = useState(false);
-    // const location = useLocation().pathname.split('/');
-    // const id = location[location.length - 1]
-  
-    // useEffect(()=> {
-    //   getProfile(setProfile, setAddress, setBirthAddress, id, setIsloading);
-    // }, [1])
-
-    let location = useLocation();
 
     const [profile, setProfile] = useState({
         name: '',
@@ -31,6 +12,7 @@ const ProfileForm = props => {
         email: '',
         address: {
             street: '',
+            number: '',
             complement: '',
             city: '',
             postCode: '',
@@ -46,6 +28,22 @@ const ProfileForm = props => {
         image: '',
         error: {}
     })
+
+
+    const location = useLocation();
+    const path = useLocation().pathname.split('/');
+    let id;
+    if (location.pathname.includes('edit')){
+        id = path[path.length - 1]
+    }
+
+    const [isloading, setIsloading] = useState(false);
+  
+    useEffect(()=> {
+        if (id){
+            getProfile(profile, setProfile, id, setIsloading);
+        }
+    }, [1])
 
     const handleChange = event => {
         if (event.target.name.includes('.')){
@@ -75,7 +73,13 @@ const ProfileForm = props => {
         }
     }
 
-    const handleSubmit = createProfileOnSubmit;
+    const handleSubmit = (e, props, profile, setProfile) => {
+        if (location.pathname.includes('new')){
+            createProfileOnSubmit(e, props, profile, setProfile);
+        } else {
+            updateProfileOnSubmit(id, e, props, profile, setProfile);
+        }
+    }
     
 	return (
           <div className="content-wrapper">
@@ -127,6 +131,7 @@ const ProfileForm = props => {
                                                 type="text"
                                                 className="form-control"
                                                 placeholder="Enter name"
+                                                defaultValue={profile.name ? profile.name : null}
                                                 name="name"
                                                 onChange={handleChange}
                                                 style={profile.error.param === 'name' ? {borderColor: '#FEBBAB', backgroundColor: '#FFF7F5'} : null}
@@ -147,6 +152,7 @@ const ProfileForm = props => {
                                                 <input
                                                 type="text"
                                                 className="form-control"
+                                                defaultValue={profile.job ? profile.job : null}
                                                 placeholder="Enter Job"
                                                 name="job"
                                                 onChange={handleChange}
@@ -168,6 +174,7 @@ const ProfileForm = props => {
                                                 <input
                                                 type="text"
                                                 className="form-control"
+                                                defaultValue={profile.phone ? profile.phone : null}
                                                 placeholder="+39xxxxxxxxxx"
                                                 name="phone"
                                                 onChange={handleChange}
@@ -189,6 +196,7 @@ const ProfileForm = props => {
                                                 <input
                                                 type="text"
                                                 className="form-control"
+                                                defaultValue={profile.email ? profile.email : null}
                                                 placeholder="example@email.com"
                                                 name="email"
                                                 onChange={handleChange}
@@ -204,6 +212,7 @@ const ProfileForm = props => {
                                             <input
                                                 type="text"
                                                 className="form-control"
+                                                defaultValue={profile.address.street ? profile.address.street : null}
                                                 placeholder="Via ..."
                                                 name="address.street"
                                                 onChange={handleChange}
@@ -218,6 +227,7 @@ const ProfileForm = props => {
                                             <input
                                                 type="number"
                                                 className="form-control"
+                                                defaultValue={profile.address.number ? profile.address.number : null}
                                                 placeholder="N."
                                                 name="address.number"
                                                 onChange={handleChange}
@@ -235,6 +245,7 @@ const ProfileForm = props => {
                                                 type="text"
                                                 className="form-control"
                                                 name="address.complement"
+                                                defaultValue={profile.address.complement ? profile.address.complement : null}
                                                 onChange={handleChange}
                                             />
                                         </div>
@@ -246,6 +257,7 @@ const ProfileForm = props => {
                                             <input
                                                 type="text"
                                                 className="form-control"
+                                                defaultValue={profile.address.city ? profile.address.city : null}
                                                 placeholder="City"
                                                 name="address.city"
                                                 onChange={handleChange}
@@ -260,6 +272,7 @@ const ProfileForm = props => {
                                             <input
                                                 type="text"
                                                 className="form-control"
+                                                defaultValue={profile.address.postCode ? profile.address.postCode : null}
                                                 placeholder="Postcode"
                                                 name="address.postCode"
                                                 onChange={handleChange}
@@ -275,6 +288,7 @@ const ProfileForm = props => {
                                             <input
                                                 type="text"
                                                 className="form-control"
+                                                defaultValue={profile.address.country ? profile.address.country : null}
                                                 placeholder="Country"
                                                 name="address.country"
                                                 onChange={handleChange}
@@ -294,6 +308,7 @@ const ProfileForm = props => {
                                             <input
                                                 type="text"
                                                 className="form-control"
+                                                defaultValue={profile.birthAddress.city ? profile.birthAddress.city : null}
                                                 placeholder="City"
                                                 name="birthAddress.city"
                                                 onChange={handleChange}
@@ -308,6 +323,7 @@ const ProfileForm = props => {
                                             <input
                                                 type="text"
                                                 className="form-control"
+                                                defaultValue={profile.birthAddress.state ? profile.birthAddress.state : null}
                                                 placeholder="State"
                                                 name="birthAddress.state"
                                                 onChange={handleChange}
@@ -324,6 +340,7 @@ const ProfileForm = props => {
                                                 type="text"
                                                 className="form-control"
                                                 name="birthAddress.country"
+                                                defaultValue={profile.birthAddress.country ? profile.birthAddress.country : null}
                                                 placeholder="Country"
                                                 onChange={handleChange}
                                                 style={profile.error.param === 'birthAddress.country' ? {borderColor: '#FEBBAB', backgroundColor: '#FFF7F5'} : null}
@@ -344,6 +361,7 @@ const ProfileForm = props => {
                                                 <input
                                                 type="text"
                                                 className="form-control"
+                                                defaultValue={profile.birth ? profile.birth : null}
                                                 placeholder="YYYY-MM-DD"
                                                 name="birth"
                                                 onChange={handleChange}
@@ -367,7 +385,7 @@ const ProfileForm = props => {
                                                     onChange={handleChange}
                                                     style={profile.error.param === 'image' ? {borderColor: '#FEBBAB', backgroundColor: '#FFF7F5'} : null}
                                                     />
-                                                    <label className="custom-file-label">Choose file**</label>
+                                                    <label className="custom-file-label">Choose file</label>
                                                 </div>
                                             </div>
                                             { profile.error.param === 'image' ? <p style={{fontSize: '15px', color: 'red'}}>{profile.error.message}</p> : null}
@@ -377,8 +395,14 @@ const ProfileForm = props => {
                                     <div className="col-md-12">
                                         <div className="form-group">
                                             <label>Description</label>
-                                            <textarea className="form-control" rows="3" placeholder="Enter ..." name="description" onChange={handleChange}
-                                            style={profile.error.param === 'description' ? {borderColor: '#FEBBAB', backgroundColor: '#FFF7F5'} : null}></textarea>
+                                            <textarea
+                                                className="form-control" rows="3" 
+                                                placeholder="Enter ..."
+                                                defaultValue={profile.description ? profile.description : null}
+                                                name="description"
+                                                onChange={handleChange}
+                                                style={profile.error.param === 'description' ? {borderColor: '#FEBBAB', backgroundColor: '#FFF7F5'} : null}>
+                                            </textarea>
                                         </div>
                                         { profile.error.param === 'description' ? <p style={{fontSize: '15px', color: 'red'}}>{profile.error.message}</p> : null}
                                     </div>

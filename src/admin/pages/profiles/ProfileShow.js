@@ -2,24 +2,43 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import { getProfile } from '../handlers/ProfileActions';
-import ProfileForm from './ProfileForm';
 
 const ProfileShow = () => {
 
-  const [profile, setProfile] = useState({});
-  const [address, setAddress] = useState({});
-  const [birthAddress, setBirthAddress] = useState({});
+  const [profile, setProfile] = useState({
+    name: '',
+    job: '',
+    phone: '',
+    email: '',
+    address: {
+        street: '',
+        number: '',
+        complement: '',
+        city: '',
+        postCode: '',
+        country: ''
+    },
+    birth: '',
+    birthAddress: {
+        city: '',
+        state: '',
+        country: ''
+    },
+    description: '',
+    image: '',
+    error: {}
+  })
+
   const [isloading, setIsloading] = useState(false);
   const location = useLocation().pathname.split('/');
   const id = location[location.length - 1]
 
   useEffect(()=> {
-    getProfile(setProfile, setAddress, setBirthAddress, id, setIsloading);
+    getProfile(profile, setProfile, id, setIsloading);
   }, [1])
 
 	return (
     <div className="content-wrapper">
-      {JSON.stringify(profile.street)}
             {/* Content Header (Page header) */}
             <section className="content-header">
               <div className="container-fluid">
@@ -59,7 +78,7 @@ const ProfileShow = () => {
                         </div>
                         <h3 className="profile-username text-center">{profile.name}</h3>
                         <p className="text-muted text-center">{profile.job}</p>
-                        <Link to={`/admin/dashboard/profiles/edit/${profile._id}`} className="btn btn-primary btn-block">
+                        <Link to={`/admin/dashboard/profiles/edit/${id}`} className="btn btn-primary btn-block">
                           <b>Edit Profile</b>
                         </Link>
                       </div>
@@ -131,7 +150,7 @@ const ProfileShow = () => {
                                               <input
                                                 type="text"
                                                 className="form-control"
-                                                value={profile.name}
+                                                defaultValue={profile.name}
                                                 readOnly={true}
                                               />
                                           </div>
@@ -149,7 +168,7 @@ const ProfileShow = () => {
                                               <input
                                                 type="text"
                                                 className="form-control"
-                                                value={profile.job}
+                                                defaultValue={profile.job}
                                                 readOnly={true}
                                               />
                                           </div>
@@ -167,7 +186,7 @@ const ProfileShow = () => {
                                               <input
                                                 type="text"
                                                 className="form-control"
-                                                value={profile.phone}
+                                                defaultValue={profile.phone}
                                                 readOnly={true}
                                               />
                                           </div>
@@ -185,7 +204,7 @@ const ProfileShow = () => {
                                               <input
                                                 type="text"
                                                 className="form-control"
-                                                value={profile.email}
+                                                defaultValue={profile.email}
                                                 readOnly={true}
                                               />
                                           </div>
@@ -197,7 +216,7 @@ const ProfileShow = () => {
                                           <input
                                                 type="text"
                                                 className="form-control"
-                                                value={address.street}
+                                                defaultValue={profile.address.street}
                                                 readOnly={true}
                                               />
                                       </div>
@@ -208,7 +227,7 @@ const ProfileShow = () => {
                                           <input
                                                 type="text"
                                                 className="form-control"
-                                                value={address.number}
+                                                defaultValue={profile.address.number}
                                                 readOnly={true}
                                               />
                                       </div>
@@ -220,7 +239,7 @@ const ProfileShow = () => {
                                           <input
                                                 type="text"
                                                 className="form-control"
-                                                value={address.complement ? address.complement : ''}
+                                                defaultValue={profile.address.complement ? profile.address.complement : ''}
                                                 readOnly={true}
                                               />
                                       </div>
@@ -232,7 +251,7 @@ const ProfileShow = () => {
                                           <input
                                                 type="text"
                                                 className="form-control"
-                                                value={address.city}
+                                                defaultValue={profile.address.city}
                                                 readOnly={true}
                                               />
                                       </div>
@@ -243,7 +262,7 @@ const ProfileShow = () => {
                                           <input
                                                 type="text"
                                                 className="form-control"
-                                                value={address.postCode}
+                                                defaultValue={profile.address.postCode}
                                                 readOnly={true}
                                               />
                                       </div>
@@ -255,7 +274,7 @@ const ProfileShow = () => {
                                           <input
                                                 type="text"
                                                 className="form-control"
-                                                value={address.country}
+                                                defaultValue={profile.address.country}
                                                 readOnly={true}
                                               />
                                       </div>
@@ -271,7 +290,7 @@ const ProfileShow = () => {
                                           <input
                                                 type="text"
                                                 className="form-control"
-                                                value={birthAddress.city}
+                                                defaultValue={profile.birthAddress.city}
                                                 readOnly={true}
                                               />
                                       </div>
@@ -282,7 +301,7 @@ const ProfileShow = () => {
                                           <input
                                                 type="text"
                                                 className="form-control"
-                                                value={birthAddress.state}
+                                                defaultValue={profile.birthAddress.state}
                                                 readOnly={true}
                                               />
                                       </div>
@@ -294,7 +313,7 @@ const ProfileShow = () => {
                                           <input
                                                 type="text"
                                                 className="form-control"
-                                                value={birthAddress.country}
+                                                defaultValue={profile.birthAddress.country}
                                                 readOnly={true}
                                               />
                                       </div>
@@ -313,7 +332,7 @@ const ProfileShow = () => {
                                               <input
                                                 type="text"
                                                 className="form-control"
-                                                value={profile.birth}
+                                                defaultValue={profile.birth}
                                                 readOnly={true}
                                               />
                                           </div>
@@ -321,7 +340,7 @@ const ProfileShow = () => {
                                       
                                       <div className="form-group" style={{width: '100%'}}>
                                           <label>Description</label>
-                                          <textarea className="form-control" rows="7" value={profile.description}></textarea>
+                                          <textarea className="form-control" rows="7" defaultValue={profile.description}></textarea>
                                       </div>
                                     </div>
                                     <div className="col-md-6">

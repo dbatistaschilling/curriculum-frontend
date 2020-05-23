@@ -25,18 +25,17 @@ class Main extends Component {
 
     document.body.className="dark-vertion black-bg";
 
-    axios.get(`/profiles`)
+    axios.get('/profile-active')
         .then(response => {
-          const allProfiles = response.data.profiles;
-          const lastProfile = allProfiles[allProfiles.length - 1];
+          const profile = response.data.profile;
           
-          const FormatedAddress = `${lastProfile.address.street}, ${lastProfile.address.number} - 
-          ${lastProfile.address.city}, ${lastProfile.address.country}`;
+          const FormatedAddress = `${profile.address.street}, ${profile.address.number} - 
+          ${profile.address.city}, ${profile.address.country}`;
 
-          this.setState({ profile: lastProfile, address: FormatedAddress });
+          this.setState({ profile: profile, address: FormatedAddress });
         })
         .catch(err => {
-          console.log(err);
+          console.log(err.response.data);
         });
   }
   

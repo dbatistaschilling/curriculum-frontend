@@ -15,34 +15,34 @@ const Dashboard = props => {
 	return (
         <div className="hold-transition sidebar-collapse layout-top-nav">
             <div className="wrapper">
-                <Navbar />
+                <Navbar router={props.router}/>
                 <Switch>
                     <Route path="/admin/dashboard" exact >
-                        <AdminHome />
+                        <AdminHome router={props.router}  />
                     </Route>
                     <Route path="/admin/dashboard/profiles" exact >
-                        <ProfileList />
+                        <ProfileList router={props.router}  />
                     </Route>
                     <Route path="/admin/dashboard/profiles/new" exact >
                         <ProfileForm router={props.router} />
                     </Route>
                     <Route path="/admin/dashboard/profiles/edit/:id" exact >
-                        <ProfileForm />
+                        <ProfileForm router={props.router} />
                     </Route>
                     <Route path="/admin/dashboard/profiles/:id" exact >
-                        <ProfileShow />  
+                        <ProfileShow router={props.router} />  
                     </Route>
                     <Route path="/admin/dashboard/knowledges" exact >
-                        <KnowledgeList />
+                        <KnowledgeList router={props.router} />
                     </Route>
                     <Route path="/admin/dashboard/knowledges/new" exact >
-                        <KnowledgeForm />
+                        <KnowledgeForm router={props.router} />
                     </Route>
                     <Route path="/admin/dashboard/knowledges/edit/:id" exact >
-                        <KnowledgeForm />
+                        <KnowledgeForm router={props.router} />
                     </Route>
                     <Route path="/admin/dashboard/knowledges/:id" exact >
-                        <KnowledgeShow />  
+                        <KnowledgeShow router={props.router} />  
                     </Route>
                 </Switch>
                 <Footer />

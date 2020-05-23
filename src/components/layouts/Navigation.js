@@ -16,6 +16,9 @@ class Navigation extends Component {
   }
   
   toggleMenu = () => {
+    console.log('aquiiiii');
+    console.log(this.state.btnMenu);
+    
     if (!this.state.btnMenu){
       this.setState({ btnMenu: true }); 
     } else {
@@ -55,7 +58,7 @@ class Navigation extends Component {
                   className={['navbar-toggler',  this.state.btnMenu ? 'active' : null].join(' ')} type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle N">
                   <span className="navbar-toggler-icon icon" />
                 </button>
-                <div className={['collapse navbar-collapse',  this.state.btnMenu ? 'active' : null].join(' ')}
+                <div className={['collapse navbar-collapse',  this.state.btnMenu ? 'active show' : null].join(' ')}
                     id="navbarSupportedContent">
                   <ul className="navbar-nav mr-auto ml-auto">
                     <li onClick={this.toggleMenu} className="nav-item active">
