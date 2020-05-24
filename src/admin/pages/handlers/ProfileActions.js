@@ -162,10 +162,6 @@ export const getProfile = (profile, setProfile, id, setIsloading) => {
 
 export const deleteProfile = (id, router) => {
     const token = localStorage.getItem('token')
-    console.log(token);
-    console.log('aquiiiiiiiiiiiiiiiiiiiii');
-    
-    
     axios.delete(`/profile/${id}`, {
         headers: {
             'Authorization' : `Bearer ${token}`
