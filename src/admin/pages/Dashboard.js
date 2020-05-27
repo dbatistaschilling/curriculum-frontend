@@ -32,16 +32,16 @@ const Dashboard = props => {
                     <Route path="/admin/dashboard/profiles/:id" exact >
                         <ProfileShow router={props.router} />  
                     </Route>
-                    <Route path="/admin/dashboard/knowledges" exact >
+                    <Route path="/admin/dashboard/categories" exact >
                         <KnowledgeList router={props.router} />
                     </Route>
-                    <Route path="/admin/dashboard/knowledges/new" exact >
+                    <Route path="/admin/dashboard/categories/knowledge/new/:id" exact >
                         <KnowledgeForm router={props.router} />
                     </Route>
-                    <Route path="/admin/dashboard/knowledges/edit/:id" exact >
+                    <Route path="/admin/dashboard/categories/knowledge/edit/:id" exact >
                         <KnowledgeForm router={props.router} />
                     </Route>
-                    <Route path="/admin/dashboard/knowledges/:id" exact >
+                    <Route path="/admin/dashboard/categories/:id" exact >
                         <KnowledgeShow router={props.router} />  
                     </Route>
                 </Switch>

@@ -70,11 +70,10 @@ const Navbar = props => {
                         </li>
                         <li className="nav-item dropdown">
                             <div type="button" id="dropdownSubMenu2" onClick={onClickHandler} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" className="nav-link dropdown-toggle">
-                                Knowledges
+                                Categories
                             </div>
                             <ul aria-labelledby="dropdownSubMenu2" className="dropdown-menu border-0 shadow">
-                                <li><Link to="/admin/dashboard/knowledges" className="dropdown-item">Knowledge List</Link></li>
-                                <li><Link to="/admin/dashboard/knowledges/new" className="dropdown-item">New Knowledge</Link></li>
+                                <li><Link to="/admin/dashboard/categories" className="dropdown-item">Category List</Link></li>
                             </ul>
                         </li>
                     </ul>
