@@ -1,5 +1,5 @@
 import React, { Component }  from 'react';
-
+import { Link, Events, animateScroll as scroll, scrollSpy } from 'react-scroll'
 
 class Navigation extends Component {
   
@@ -14,25 +14,57 @@ class Navigation extends Component {
     // This binding is necessary to make `this` work in the callback
     this.toggleMenu = this.toggleMenu.bind(this);
   }
+
+
   
-  toggleMenu = () => {
-    console.log('aquiiiii');
-    console.log(this.state.btnMenu);
-    
+  toggleMenu = (e) => {    
+
     if (!this.state.btnMenu){
       this.setState({ btnMenu: true }); 
     } else {
       this.setState({ btnMenu: false }); 
     }
+
   };
 
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
+
+    Events.scrollEvent.register('begin', function(to, element) {
+      // console.log("begin", arguments);
+    });
+
+    Events.scrollEvent.register('end', function(to, element) {
+      // console.log("end", arguments);
+    });
+
+    scrollSpy.update();
+
   }; 
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
+
+    Events.scrollEvent.remove('begin');
+    Events.scrollEvent.remove('end');
+
   }
+
+  scrollToTop() {
+    scroll.scrollToTop();
+  };
+  scrollToBottom() {
+    scroll.scrollToBottom();
+  };
+  scrollTo() {
+    scroll.scrollTo(100);
+  };
+  scrollMore() {
+    scroll.scrollMore(100);
+  };
+  handleSetActive(to) {
+    console.log(to);
+  };
 
   handleScroll = () => {
     this.setState({ scrollPixelsY: window.scrollY });
@@ -43,6 +75,9 @@ class Navigation extends Component {
     }
   };
 
+  scrollToTop = () => {
+    scroll.scrollToTop();
+  };
 
   render() {
     return (
@@ -61,34 +96,87 @@ class Navigation extends Component {
                 <div className={['collapse navbar-collapse',  this.state.btnMenu ? 'active show' : null].join(' ')}
                     id="navbarSupportedContent">
                   <ul className="navbar-nav mr-auto ml-auto">
-                    <li onClick={this.toggleMenu} className="nav-item active">
-                      <a className="nav-link" href="#mh-home">Home</a>
-                    </li>
-                    <li onClick={this.toggleMenu} className="nav-item">
-                      <a
-                         className="nav-link" href="#mh-about">About</a>
+                    <li className="nav-item active">
+                      <Link spy={true}
+                        onClick={this.toggleMenu}
+                        smooth={true}
+                        offset={-70}
+                        duration={500}
+                        className="nav-link"
+                        activeClass="active"
+                        to="#mh-home">Home</Link>
                     </li>
                     <li className="nav-item">
-                      <a onClick={this.toggleMenu.bind(this)}
-                        className="nav-link" href="#mh-skills">Skills</a>
+                      <Link spy={true}
+                        onClick={this.toggleMenu}
+                        smooth={true}
+                        offset={-70}
+                        duration={500}
+                        className="nav-link"
+                        to="#mh-about">About</Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link spy={true}
+                        onClick={this.toggleMenu}
+                        smooth={true}
+                        offset={-70}
+                        duration={500}
+                        className="nav-link"
+                        to="#mh-courses">Courses</Link>
+                    </li> 
+                    <li className="nav-item">
+                      <Link spy={true}
+                        onClick={this.toggleMenu}
+                        smooth={true}
+                        offset={-70}
+                        duration={500}
+                        className="nav-link"
+                        to="#mh-skills">Knowledges</Link>
                     </li>                                
                     <li className="nav-item">
-                      <a onClick={this.toggleMenu.bind(this)}
-                         className="nav-link" href="#mh-experience">Experiences</a>
+                      <Link spy={true}
+                        onClick={this.toggleMenu}
+                        smooth={true}
+                        offset={-70}
+                        duration={500}
+                        className="nav-link"
+                        to="#mh-experience">Experiences</Link>
                     </li>                                
-                    <li className="nav-item">
-                      <a onClick={this.toggleMenu}
-                         className="nav-link" href="#mh-portfolio">Portfolio</a>
-                    </li>                               
+                    {/* <li  className="nav-item">
+                      <Link spy={true}
+                        onClick={this.toggleMenu}
+                        smooth={true}
+                        offset={-70}
+                        duration={500}
+                        className="nav-link"
+                        to="#mh-portfolio">Portfolio</Link>
+                    </li>                                */}
                     {/* <li className="nav-item">
-                      <a className="nav-link" href="#mh-pricing">Pricing</a>
+                      <Link spy={true}
+                        onClick={this.toggleMenu}
+                        smooth={true}
+                        offset={-70}
+                        duration={500}
+                        className="nav-link"
+                        to="#mh-pricing">Pricing</Link>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="#mh-blog">Blog</a>
+                      <Link spy={true}
+                        onClick={this.toggleMenu}
+                        smooth={true}
+                        offset={-70}
+                        duration={500}
+                        className="nav-link"
+                        to="#mh-blog">Blog</Link>
                     </li> */}
                     <li className="nav-item">
-                      <a onClick={this.toggleMenu}
-                          className="nav-link" href="#mh-contact">Contact</a>
+                      <Link spy={true}
+                        onClick={this.toggleMenu}
+                        smooth={true}
+                        offset={-70}
+                        duration={500}
+                        className="nav-link"
+                        to="#mh-contact">Contact</Link>
                     </li>
                   </ul>
                 </div>

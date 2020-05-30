@@ -8,7 +8,6 @@ const Home = props => {
         <section className="mh-home" id="mh-home">
             <div className="react-image image-bg">
                 <div className="home-ovimg">
-                    {console.log(props.name)}
                     <Profile
                         name={props.name}
                         job={props.job}

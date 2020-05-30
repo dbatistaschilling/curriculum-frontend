@@ -1,20 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 
 const Loader = () => {
 
-    const [loader, setLoader] = useState({
-        onStart: true
-    })
-
-    useEffect(() => {
-        window.setTimeout(() => {
-            setLoader({ onStart: false })
-        }, 500)
-    });
-
 	return (
-        <div className={loader.onStart ? "section-loader" : null}>
+        <div className={"section-loader"}>
             <div className="loader">
                 <div></div>
                 <div></div> 

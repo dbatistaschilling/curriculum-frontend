@@ -19,7 +19,7 @@ const KnowledgeList = props => {
   const [categories, setCategories] = useState([])
   const [isLoading, setisLoading] = useState(true)
   const [modal, setmodal] = useState({show: false})
-  const [notification, setNotification] = useState({show: false})
+  // const [notification, setNotification] = useState({show: false})
 
   const loadMorecategories = () => {
     setPage(page + 1);

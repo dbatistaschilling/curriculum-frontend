@@ -10,6 +10,7 @@ const KnowledgeForm = props => {
     
     const [knowledge, setKnowledge] = useState({
         status: 'Active',
+        title: '',
         error: {}
     })
 
@@ -35,7 +36,7 @@ const KnowledgeForm = props => {
                     param: ''
                 }
             })
-            if (isloading){
+            if (!isloading){
                 getCategory(knowledge.category, setCategory);
             }
         }
@@ -43,12 +44,18 @@ const KnowledgeForm = props => {
     }, [isloading])
 
     const handleChange = event => {
+        console.log(event.target.name);
+        console.log(event.target.value);
+        
+        if (event.target.value === 'Choose a course situation'){
+            return;
+        }
+
         setKnowledge({
             ...knowledge,
             [event.target.name]: event.target.value
         });
         console.log(knowledge);
-        
     }
 
     const handleSubmit = (e, props, knowledge, setKnowledge, categoryId) => {
@@ -75,7 +82,10 @@ const KnowledgeForm = props => {
                       <li className="breadcrumb-item">
                         <Link to="/admin/dashboard">Dashboard</Link>
                       </li>
-                      <li className="breadcrumb-item active">Profile {location.pathname.includes('new') ? 'Create' : 'Edit'}</li>
+                      <li className="breadcrumb-item">
+                        <Link to={`/admin/dashboard/categories/${category._id}`}>Category</Link>
+                      </li>
+                      <li className="breadcrumb-item active">Profile {location.pathname.includes('new') ? 'Create' : location.pathname.includes('new') ? 'Edit' : 'View'}</li>
                     </ol>
                   </div>
                 </div>
@@ -112,23 +122,40 @@ const KnowledgeForm = props => {
                                                 defaultValue={knowledge.title ? knowledge.title : null}
                                                 name="title"
                                                 onChange={handleChange}
-                                                // style={knowledge.error.param === 'title' ? {borderColor: '#FEBBAB', backgroundColor: '#FFF7F5'} : null}
+                                                disabled={!location.pathname.includes('new') ? !location.pathname.includes('edit') ? true : false : false}
+                                                style={location.pathname.includes('new') ? knowledge.error.param === 'title' ? {borderColor: '#FEBBAB', backgroundColor: '#FFF7F5'} : null : null}
                                                 />
                                             </div>
-                                            {/* { knowledge.error.param === 'title' ? <p style={{fontSize: '15px', color: 'red'}}>{knowledge.error.message}</p> : null} */}
+                                            {location.pathname.includes('new') ? knowledge.error.param === 'title' ? <p style={{fontSize: '15px', color: 'red'}}>{knowledge.error.message}</p> : null : null}
                                         </div>
                                     </div>
+
                                     <div className="col-md-6">
-
-                                    <div className="form-group">
-                                        <label>Course Situation</label>
-                                        <select name='courseSituation' className="form-control select2" style={{width: '100%'}}>
-                                        <option selected="selected">Coursing</option>
-                                        <option>Finished</option>
-                                        </select>
+                                        <div className="form-group">
+                                            <label>Course Situation</label>
+                                            <select name='courseSituation' className="form-control select2" style={{width: '100%'}}
+                                            disabled={!location.pathname.includes('new') ? !location.pathname.includes('edit') ? true : false : false}
+                                            onChange={handleChange}
+                                            >
+                                            <option defaultValue="selected">
+                                                {location.pathname.includes('edit') ? knowledge.courseSituation ? knowledge.courseSituation : 'Choose a course situation' : 'Choose a course situation'}
+                                            </option>
+                                                {location.pathname.includes('edit') ? knowledge.courseSituation === 'Coursing' ? 
+                                                    <option value="Finished">Finished</option> : knowledge.courseSituation === 'Finished' ? 
+                                                    <option value="Coursing">Coursing</option> : 
+                                                    <>
+                                                        <option value="Finished">Finished</option>
+                                                        <option value="Coursing">Coursing</option>
+                                                    </> : 
+                                                    <>
+                                                    <option value="Finished">Finished</option>
+                                                    <option value="Coursing">Coursing</option>
+                                                </>
+                                            }
+                                            </select>
+                                        </div>
                                     </div>
 
-                                    </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
                                             <label>Url</label>
@@ -145,10 +172,11 @@ const KnowledgeForm = props => {
                                                 placeholder="www.google.com"
                                                 name="url"
                                                 onChange={handleChange}
-                                                // style={knowledge.error.param === 'url' ? {borderColor: '#FEBBAB', backgroundColor: '#FFF7F5'} : null}
+                                                readOnly={!location.pathname.includes('new') ? !location.pathname.includes('edit') ? true : false : false}
+                                                style={location.pathname.includes('new') ? knowledge.error.param === 'url' ? {borderColor: '#FEBBAB', backgroundColor: '#FFF7F5'} : null : null}
                                                 />
                                             </div>
-                                            {/* { knowledge.error.param === 'url' ? <p style={{fontSize: '15px', color: 'red'}}>{knowledge.error.message}</p> : null} */}
+                                            { location.pathname.includes('new') ? knowledge.error.param === 'url' ? <p style={{fontSize: '15px', color: 'red'}}>{knowledge.error.message}</p> : null : null}
                                         </div>
                                     </div>
 
@@ -169,10 +197,11 @@ const KnowledgeForm = props => {
                                                 placeholder="YYYY-MM-DD"
                                                 name="initialDate"
                                                 onChange={handleChange}
-                                                // style={knowledge.error.param === 'initialDate' ? {borderColor: '#FEBBAB', backgroundColor: '#FFF7F5'} : null}
+                                                readOnly={!location.pathname.includes('new') ? !location.pathname.includes('edit') ? true : false : false}
+                                                style={location.pathname.includes('new') ? knowledge.error.param === 'initialDate' ? {borderColor: '#FEBBAB', backgroundColor: '#FFF7F5'} : null : null}
                                                 />
                                             </div>
-                                            {/* { knowledge.error.param === 'initialDate' ? <p style={{fontSize: '15px', color: 'red'}}>{knowledge.error.message}</p> : null} */}
+                                            { location.pathname.includes('new') ? knowledge.error.param === 'initialDate' ? <p style={{fontSize: '15px', color: 'red'}}>{knowledge.error.message}</p> : null : null}
                                             </div>
                                     </div>
 
@@ -193,10 +222,11 @@ const KnowledgeForm = props => {
                                                 placeholder="YYYY-MM-DD"
                                                 name="finalDate"
                                                 onChange={handleChange}
-                                                // style={knowledge.error.param === 'finalDate' ? {borderColor: '#FEBBAB', backgroundColor: '#FFF7F5'} : null}
+                                                readOnly={!location.pathname.includes('new') ? !location.pathname.includes('edit') ? true : false : false}
+                                                style={location.pathname.includes('new') ? knowledge.error.param === 'finalDate' ? {borderColor: '#FEBBAB', backgroundColor: '#FFF7F5'} : null : null}
                                                 />
                                             </div>
-                                            {/* { knowledge.error.param === 'finalDate' ? <p style={{fontSize: '15px', color: 'red'}}>{knowledge.error.message}</p> : null} */}
+                                            { location.pathname.includes('new') ? knowledge.error.param === 'finalDate' ? <p style={{fontSize: '15px', color: 'red'}}>{knowledge.error.message}</p> : null : null}
                                             </div>
                                     </div>
 
@@ -210,10 +240,11 @@ const KnowledgeForm = props => {
                                                 placeholder="N."
                                                 name="level"
                                                 onChange={handleChange}
+                                                readOnly={!location.pathname.includes('new') ? !location.pathname.includes('edit') ? true : false : false}
                                                 autoComplete="off"
-                                                // style={knowledge.error.param === 'level' ? {borderColor: '#FEBBAB', backgroundColor: '#FFF7F5'} : null}
+                                                style={location.pathname.includes('new') ? knowledge.error.param === 'level' ? {borderColor: '#FEBBAB', backgroundColor: '#FFF7F5'} : null : null}
                                             />
-                                            {/* { knowledge.error.param === 'level' ? <p style={{fontSize: '15px', color: 'red'}}>{knowledge.error.message}</p> : null} */}
+                                            { location.pathname.includes('new') ? knowledge.error.param === 'level' ? <p style={{fontSize: '15px', color: 'red'}}>{knowledge.error.message}</p> : null : null}
                                         </div>
                                     </div>
 
@@ -227,10 +258,11 @@ const KnowledgeForm = props => {
                                                 placeholder="N."
                                                 name="duration"
                                                 onChange={handleChange}
+                                                readOnly={!location.pathname.includes('new') ? !location.pathname.includes('edit') ? true : false : false}
                                                 autoComplete="off"
-                                                // style={knowledge.error.param === 'duration' ? {borderColor: '#FEBBAB', backgroundColor: '#FFF7F5'} : null}
+                                                style={location.pathname.includes('new') ? knowledge.error.param === 'duration' ? {borderColor: '#FEBBAB', backgroundColor: '#FFF7F5'} : null : null}
                                             />
-                                            {/* { knowledge.error.param === 'duration' ? <p style={{fontSize: '15px', color: 'red'}}>{knowledge.error.message}</p> : null} */}
+                                            { location.pathname.includes('new') ? knowledge.error.param === 'duration' ? <p style={{fontSize: '15px', color: 'red'}}>{knowledge.error.message}</p> : null : null}
                                         </div>
                                     </div>
 
@@ -244,10 +276,11 @@ const KnowledgeForm = props => {
                                                 placeholder="Via ..."
                                                 name="address"
                                                 onChange={handleChange}
-                                                // style={knowledge.error.param === 'address' ? {borderColor: '#FEBBAB', backgroundColor: '#FFF7F5'} : null}
+                                                readOnly={!location.pathname.includes('new') ? !location.pathname.includes('edit') ? true : false : false}
+                                                style={location.pathname.includes('new') ? knowledge.error.param === 'address' ? {borderColor: '#FEBBAB', backgroundColor: '#FFF7F5'} : null : null}
                                             />
                                         </div>
-                                        {/* { knowledge.error.param === 'address' ? <p style={{fontSize: '15px', color: 'red'}}>{knowledge.error.message}</p> : null} */}
+                                        { location.pathname.includes('new') ? knowledge.error.param === 'address' ? <p style={{fontSize: '15px', color: 'red'}}>{knowledge.error.message}</p> : null : null}
                                     </div>
 
                                     <div className="col-md-6">
@@ -266,17 +299,40 @@ const KnowledgeForm = props => {
                                                 placeholder="Write a note"
                                                 name="note"
                                                 onChange={handleChange}
-                                                // style={knowledge.error.param === 'note' ? {borderColor: '#FEBBAB', backgroundColor: '#FFF7F5'} : null}
+                                                readOnly={!location.pathname.includes('new') ? !location.pathname.includes('edit') ? true : false : false}
+                                                style={location.pathname.includes('new') ? knowledge.error.param === 'note' ? {borderColor: '#FEBBAB', backgroundColor: '#FFF7F5'} : null : null}
                                                 />
                                             </div>
-                                            {/* { knowledge.error.param === 'note' ? <p style={{fontSize: '15px', color: 'red'}}>{knowledge.error.message}</p> : null} */}
+                                            { location.pathname.includes('new') ? knowledge.error.param === 'note' ? <p style={{fontSize: '15px', color: 'red'}}>{knowledge.error.message}</p> : null : null}
                                         </div>
                                     </div>
+
+                                    {!location.pathname.includes('new') ? 
+                                        <div className="col-md-2">
+                                            <div className="form-group">
+                                                <label>Status</label>
+                                                <select name='status' className="form-control select2" style={{width: '100%'}}
+                                                    disabled={!location.pathname.includes('new') ? !location.pathname.includes('edit') ? true : false : false}
+                                                    onChange={handleChange}
+                                                >
+                                                <option defaultValue="selected">
+                                                    {knowledge.status}
+                                                </option>
+                                                    {knowledge.status === 'Active' ? 
+                                                        <option value="Disactivated">Disactivated</option> : 
+                                                        <option value="Active">Active</option>
+                                                }
+                                                </select>
+                                            </div>
+                                        </div>
+                                    :
+                                        null
+                                    }
 
                                 </div>
                             </div>
                             {/* /.card-body */}
-                            <div className="card-footer">
+                            <div className="card-footer" hidden={!location.pathname.includes('new') ? !location.pathname.includes('edit') ? true : false : false}>
                                 <button type="submit" className="btn btn-primary" style={{float: 'right'}}>
                                     Submit
                                 </button>

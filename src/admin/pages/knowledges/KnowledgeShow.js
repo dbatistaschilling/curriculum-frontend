@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Modal from '../Modal';
 import { getKnowledges, deleteKnowledge } from '../handlers/KnowledgeActions';
-import { getCategory } from '../handlers/CategoryActions';
-// import { getCategories, createCategoryOnSubmit, deleteCategory } from '../handlers/CategoryActions';
+import { getCategory, updateCategoryOnSubmit } from '../handlers/CategoryActions';
 
 
 const KnowledgeShow = props => {
@@ -12,12 +11,16 @@ const KnowledgeShow = props => {
 
     const [category, setCategory] = useState({
       category: '',
+      updated: false,
       error: {}
     })
+
+    const [categoryName, setCategoryName] = useState('')
   
-    const [knowledges, setKnowledges] = useState([])
-    const [isLoading, setisLoading] = useState(true)
-    const [modal, setmodal] = useState({show: false})
+    const [knowledges, setKnowledges] = useState([]);
+    const [isLoading, setisLoading] = useState(true);
+    // const [onSubmit, setOnSubmit] = useState(false);
+    const [modal, setmodal] = useState({show: false});
     // const [notification, setNotification] = useState({show: false})
   
     const loadMorecategories = () => {
@@ -30,22 +33,38 @@ const KnowledgeShow = props => {
         let id = path[path.length - 1];
         getCategory(id, setCategory);
         getKnowledges(id, `?page=${page}&per-page=10&sortby=createdAt_DESC`, setKnowledges, setisLoading);
-    }, [page]);
+        if (!isLoading){
+          setCategoryName(category.category)
+        }
+    }, [page, isLoading]);
   
     const openModal = (e, {_id, title, createdAt}) => {
       setmodal({show: true, categoryId: _id, content: `Ready to delete ${title} created at ${createdAt}`})
     }
   
-    // const handleChange = event => {
-    //   setnewCategory({
-    //       ...newCategory,
-    //       [event.target.name]: event.target.value
-    //   });    
-    // }
+    const handleChange = event => {
+      setCategory({
+          ...category,
+          [event.target.name]: event.target.value,
+          updated: true
+      });
+
+    }
   
-    // const handleSubmit = (e, props, category, setCategories) => {
-    //     createCategoryOnSubmit(e, props, category, setCategories);
-    // }
+    const handleSubmit = (e, props, category, setCategory) => {
+        e.preventDefault();        
+        if (!category.category || category.category.length < 4 || !category.updated){                              
+          setCategory({
+            ...category,
+            error: {
+              param: 'category',
+              message: 'Updated category title invalid'
+            }
+          });
+        } else {
+          updateCategoryOnSubmit(e, props, category, setCategory)
+        }
+    }
 
 	return (
    <div className="content-wrapper">
@@ -54,7 +73,7 @@ const KnowledgeShow = props => {
             <div className="container-fluid">
             <div className="row mb-2">
                 <div className="col-sm-6">
-                <h1>{category.category} Category</h1>
+                <h1>{categoryName} Category</h1>
                 </div>
                 <div className="col-sm-6">
                 <ol className="breadcrumb float-sm-right">
@@ -118,8 +137,11 @@ const KnowledgeShow = props => {
                           {knowledge.createdAt}
                         </td>
                         <td className="project-actions text-center" style={{marginLeft:'auto', marginRight:'auto', display:'block'}}>
-                          <Link className="btn btn-primary btn-sm" style={{marginLeft: '15px', marginRight: '15px'}} to={`/admin/dashboard/categories/knowledge/edit/${knowledge._id}`}>
+                          <Link className="btn btn-primary btn-sm" style={{marginLeft: '15px', marginRight: '15px'}} to={`/admin/dashboard/categories/knowledge/${knowledge._id}`}>
                             <i className="fas fa-folder" style={{marginLeft: '5px', marginRight: '5px'}}></i>   View
+                          </Link>
+                          <Link className="btn btn-info btn-sm" style={{marginLeft: '15px', marginRight: '15px'}} to={`/admin/dashboard/categories/knowledge/edit/${knowledge._id}`}>
+                            <i className="fas fa-folder" style={{marginLeft: '5px', marginRight: '5px'}}></i>   Edit
                           </Link>
                           <button onClick={(e) => openModal(e, knowledge, 'danger')} type="button" className="btn btn-danger btn-sm" style={{marginLeft: '15px', marginRight: '15px'}}>
                             <i className="fas fa-trash" style={{marginLeft: '5px', marginRight: '5px'}}></i>   Delete
@@ -136,39 +158,24 @@ const KnowledgeShow = props => {
              </div>
            </div>
            <div className="col-12 col-md-12 col-lg-4 order-1 order-md-2">
-             <h3 className="text-primary"><i className="fas fa-paint-brush" /> AdminLTE v3</h3>
-             <p className="text-muted">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</p>
-             <br />
-             <div className="text-muted">
-               <p className="text-sm">Client Company
-                 <b className="d-block">Deveint Inc</b>
-               </p>
-               <p className="text-sm">Project Leader
-                 <b className="d-block">Tony Chicken</b>
-               </p>
-             </div>
-             <h5 className="mt-5 text-muted">Project files</h5>
-             <ul className="list-unstyled">
-               <li>
-                 <Link to={'/'} className="btn-link text-secondary"><i className="far fa-fw fa-file-word" /> Functional-requirements.docx</Link>
-               </li>
-               <li>
-                 <Link to={'/'} className="btn-link text-secondary"><i className="far fa-fw fa-file-pdf" /> UAT.pdf</Link>
-               </li>
-               <li>
-                 <Link to={'/'} className="btn-link text-secondary"><i className="far fa-fw fa-envelope" /> Email-from-flatbal.mln</Link>
-               </li>
-               <li>
-                 <Link to={'/'} className="btn-link text-secondary"><i className="far fa-fw fa-image " /> Logo.png</Link>
-               </li>
-               <li>
-                 <Link to={'/'} className="btn-link text-secondary"><i className="far fa-fw fa-file-word" /> Contract-10_12_2014.docx</Link>
-               </li>
-             </ul>
-             <div className="text-center mt-5 mb-3">
-               <Link to="#" className="btn btn-sm btn-primary">Add files</Link>
-               <Link to="#" className="btn btn-sm btn-warning">Report contact</Link>
-             </div>
+              <h3 className="text-primary"><i className="fas fa-paint-brush" /> {categoryName}</h3>
+              <br />
+             <form className="form-horizontal" style={{marginBottom: '-30px'}} onSubmit={(e) => handleSubmit(e, props, category, setCategory)} >
+              <div className="card-body">
+                <div className="form-group row">
+                  <div className="col-sm-6">
+                    <input type="text" className="form-control" placeholder="Update category title" name="category"
+                      onChange={handleChange}
+                      style={category.error ? {borderColor: '#FEBBAB', backgroundColor: '#FFF7F5'} : null }
+                    />
+                  </div>
+                  <div className="col-sm-1">
+                    <button type="submit" className="btn btn-info float-left">Update</button>
+                  </div>
+                </div>
+                {category.error ? <p style={{fontSize: '15px', color: 'red', marginTop: '-25px'}}>{category.error.message}</p> : null }
+              </div>
+            </form>
            </div>
          </div>
        </div>

@@ -151,7 +151,7 @@ const ProfileShow = () => {
                                                 type="text"
                                                 className="form-control"
                                                 defaultValue={profile.name}
-                                                readOnly={true}
+                                                disabled={true}
                                               />
                                           </div>
                                       </div>
@@ -169,7 +169,7 @@ const ProfileShow = () => {
                                                 type="text"
                                                 className="form-control"
                                                 defaultValue={profile.job}
-                                                readOnly={true}
+                                                disabled={true}
                                               />
                                           </div>
                                       </div>
@@ -187,7 +187,7 @@ const ProfileShow = () => {
                                                 type="text"
                                                 className="form-control"
                                                 defaultValue={profile.phone}
-                                                readOnly={true}
+                                                disabled={true}
                                               />
                                           </div>
                                       </div>
@@ -205,7 +205,7 @@ const ProfileShow = () => {
                                                 type="text"
                                                 className="form-control"
                                                 defaultValue={profile.email}
-                                                readOnly={true}
+                                                disabled={true}
                                               />
                                           </div>
                                       </div>
@@ -217,7 +217,7 @@ const ProfileShow = () => {
                                                 type="text"
                                                 className="form-control"
                                                 defaultValue={profile.address.street}
-                                                readOnly={true}
+                                                disabled={true}
                                               />
                                       </div>
                                   </div>
@@ -228,7 +228,7 @@ const ProfileShow = () => {
                                                 type="text"
                                                 className="form-control"
                                                 defaultValue={profile.address.number}
-                                                readOnly={true}
+                                                disabled={true}
                                               />
                                       </div>
                                   </div>
@@ -240,7 +240,7 @@ const ProfileShow = () => {
                                                 type="text"
                                                 className="form-control"
                                                 defaultValue={profile.address.complement ? profile.address.complement : ''}
-                                                readOnly={true}
+                                                disabled={true}
                                               />
                                       </div>
                                   </div>
@@ -252,7 +252,7 @@ const ProfileShow = () => {
                                                 type="text"
                                                 className="form-control"
                                                 defaultValue={profile.address.city}
-                                                readOnly={true}
+                                                disabled={true}
                                               />
                                       </div>
                                   </div>
@@ -263,7 +263,7 @@ const ProfileShow = () => {
                                                 type="text"
                                                 className="form-control"
                                                 defaultValue={profile.address.postCode}
-                                                readOnly={true}
+                                                disabled={true}
                                               />
                                       </div>
                                   </div>
@@ -275,7 +275,7 @@ const ProfileShow = () => {
                                                 type="text"
                                                 className="form-control"
                                                 defaultValue={profile.address.country}
-                                                readOnly={true}
+                                                disabled={true}
                                               />
                                       </div>
                                   </div>
@@ -291,7 +291,7 @@ const ProfileShow = () => {
                                                 type="text"
                                                 className="form-control"
                                                 defaultValue={profile.birthAddress.city}
-                                                readOnly={true}
+                                                disabled={true}
                                               />
                                       </div>
                                   </div>
@@ -302,7 +302,7 @@ const ProfileShow = () => {
                                                 type="text"
                                                 className="form-control"
                                                 defaultValue={profile.birthAddress.state}
-                                                readOnly={true}
+                                                disabled={true}
                                               />
                                       </div>
                                   </div>
@@ -314,7 +314,7 @@ const ProfileShow = () => {
                                                 type="text"
                                                 className="form-control"
                                                 defaultValue={profile.birthAddress.country}
-                                                readOnly={true}
+                                                disabled={true}
                                               />
                                       </div>
                                   </div>
@@ -333,7 +333,7 @@ const ProfileShow = () => {
                                                 type="text"
                                                 className="form-control"
                                                 defaultValue={profile.birth}
-                                                readOnly={true}
+                                                disabled={true}
                                               />
                                           </div>
                                       </div>

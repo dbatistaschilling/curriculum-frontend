@@ -1,4 +1,4 @@
-import { Route, Switch, withRouter, Link } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import React from 'react';
 
 import './styles/Admin.css';

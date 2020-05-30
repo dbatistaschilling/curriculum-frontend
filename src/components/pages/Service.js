@@ -1,46 +1,30 @@
 import React from 'react';
 
-const service = (props) => {
+const service = props => {
     return (
         <section className="mh-service">
         <div className="container">
           <div className="row section-separator">
             <div className="col-sm-12 text-center section-title wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
-              <h2>What I do</h2>
+              <h2>Courses</h2>
             </div>
-            <div className="col-md-4 col-sm-12">
-              <div className="mh-service-item shadow-1 dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
-                <i className="fa fa-bullseye purple-color" />
-                <h3>UI Design</h3>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                  sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-                  magna aliquam erat volutpat.
-                </p>
-              </div>
-            </div>
-            <div className="col-md-4 col-sm-12">
-              <div className="mh-service-item shadow-1 dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s">
-                <i className="fa fa-code iron-color" />
-                <h3>Web Development</h3>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                  sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-                  magna aliquam erat volutpat.
-                </p>
-              </div>
-            </div>
-            <div className="col-md-4 col-sm-12">
-              <div className="mh-service-item shadow-1 dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.7s">
-                <i className="fa fa-object-ungroup sky-color" />
-                <h3>App Development</h3>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                  sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-                  magna aliquam erat volutpat.
-                </p>
-              </div>
-            </div>
+            { props.courses ?
+                props.courses.knowledges.map((course, index) => (
+                  <div className="col-md-4 col-sm-12" key={course._id}>
+                    <div className="mh-service-item shadow-1 dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
+                      {/* <i className="fab fa-js purple-color" /> */}
+                      <h3>{course.title}</h3>
+                      <p>
+                        {`${new Intl.DateTimeFormat("en-US", {
+                            month: "2-digit",
+                            year: "numeric"
+                          }).format(new Date(course.finalDate))} - ${course.duration}hrs duration - ${course.note}`}
+                      </p>
+                    </div>
+                  </div>
+                ))
+            : null
+            }
           </div>
         </div>
       </section>

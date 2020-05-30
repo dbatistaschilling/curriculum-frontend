@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import Navbar from './Navbar';
@@ -34,6 +34,9 @@ const Dashboard = props => {
                     </Route>
                     <Route path="/admin/dashboard/categories" exact >
                         <KnowledgeList router={props.router} />
+                    </Route>
+                    <Route path="/admin/dashboard/categories/knowledge/:id" exact >
+                        <KnowledgeForm router={props.router} />
                     </Route>
                     <Route path="/admin/dashboard/categories/knowledge/new/:id" exact >
                         <KnowledgeForm router={props.router} />

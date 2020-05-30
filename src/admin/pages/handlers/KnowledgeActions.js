@@ -8,8 +8,6 @@ export const getKnowledges = (id, params, setKnowledges, setIsloading) => {
         }
     })
     .then(response => {
-        console.log(response.data.knowledges);
-        
         setKnowledges(response.data.knowledges)
         setIsloading(false);        
     })
@@ -28,7 +26,7 @@ export const getKnowledge = (id, setKnowledge, setIsloading) => {
     })
     .then(response => {
         setKnowledge(response.data.knowledge);
-        setIsloading(true);
+        setIsloading(false);
     })
     .catch(err => {
         console.log(err.response);
