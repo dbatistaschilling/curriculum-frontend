@@ -20,5 +20,3 @@ const MapWithAMarker = props => {
 };
 
 export default withScriptjs(withGoogleMap(MapWithAMarker));
-
-//       //   apiKey: 'AIzaSyBOQoUH07NCuMRL8ujR80uiUQPQnVAFfvg',
