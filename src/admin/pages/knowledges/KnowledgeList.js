@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import Modal from '../Modal';
 // import Notification from '../Notification';
 import { getCategories, createCategoryOnSubmit, deleteCategory } from '../handlers/CategoryActions';
-// import { getCategories, deleteCategory, activateCategory, createCategoryOnSubmit, updateCategoryOnSubmit } from '../handlers/CategoryActions';
 
 
 const KnowledgeList = props => {
@@ -92,14 +91,18 @@ const KnowledgeList = props => {
                   <table className="table table-striped projects">
                     <thead>
                       <tr>
-                        <th style={{ width: "20%" }}>category Title</th>
+                        <th style={{ width: "20%" }}>ID</th>
+                        <th style={{ width: "20%" }}>Title</th>
                         <th style={{ width: "20%" }}>Created at</th>
-                        <th style={{ width: "30%"}} className="text-center">Actions</th>
+                        <th style={{ width: "40%"}} className="text-center">Actions</th>
                       </tr>
                     </thead>
                     <tbody>
                       {categories.map((category, index) => (
                         <tr key={category._id}>
+                        <td>
+                          { category._id}
+                        </td>
                         <td>
                           { category.category}
                         </td>

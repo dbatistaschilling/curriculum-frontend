@@ -27,35 +27,31 @@ const KnowledgeForm = props => {
         let id = idPath[idPath.length - 1];
 
         if (pathname.includes('new')){
-            getCategory(id, setCategory, setIsloading);
+            getCategory(id, setCategory);
+            setIsloading(true);
         } else {
-            getKnowledge(id, setKnowledge, setIsloading);
+            getKnowledge(id, setKnowledge);
             setKnowledge({
                 ...knowledge,
                 error: {
                     param: ''
                 }
             })
-            if (!isloading){
+            if (!isloading && knowledge.category){
                 getCategory(knowledge.category, setCategory);
             }
         }
 
     }, [isloading])
 
-    const handleChange = event => {
-        console.log(event.target.name);
-        console.log(event.target.value);
-        
+    const handleChange = event => {        
         if (event.target.value === 'Choose a course situation'){
             return;
         }
-
         setKnowledge({
             ...knowledge,
             [event.target.name]: event.target.value
         });
-        console.log(knowledge);
     }
 
     const handleSubmit = (e, props, knowledge, setKnowledge, categoryId) => {
@@ -83,7 +79,7 @@ const KnowledgeForm = props => {
                         <Link to="/admin/dashboard">Dashboard</Link>
                       </li>
                       <li className="breadcrumb-item">
-                        <Link to={`/admin/dashboard/categories/${category._id}`}>Category</Link>
+                        <Link to={`/admin/dashboard/categories/${knowledge.category}`}>Category</Link>
                       </li>
                       <li className="breadcrumb-item active">Profile {location.pathname.includes('new') ? 'Create' : location.pathname.includes('new') ? 'Edit' : 'View'}</li>
                     </ol>

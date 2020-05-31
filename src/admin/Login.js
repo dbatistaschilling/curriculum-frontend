@@ -88,10 +88,10 @@ const Login = props => {
                             <div className="row">
                                 <div className="col-8">
                                 <div className="icheck-primary">
-                                    <input type="checkbox" id="remember" />
+                                    {/* <input type="checkbox" id="remember" />
                                     <label htmlFor="remember">
                                     Remember Me
-                                    </label>
+                                    </label> */}
                                 </div>
                                 </div>
                                 {/* /.col */}
@@ -114,12 +114,12 @@ const Login = props => {
                                 </Link> */}
                             </div>
                             {/* /.social-auth-links */}
-                            <p className="mb-1">
+                            {/* <p className="mb-1">
                             <Link to="/admin/forgot-password">I forgot my password</Link>
                             </p>
                             <p className="mb-0">
                             <Link to="/admin/signup" className="text-center">Register a new membership</Link>
-                            </p>
+                            </p> */}
                         </div>
                     {/* /.login-card-body */}
                     </div>

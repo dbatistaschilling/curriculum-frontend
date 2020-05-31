@@ -17,6 +17,10 @@
     "recharts": "^1.8.5"
   },
   "scripts": {
+    "start:test": "env-cmd -e test react-scripts start",
+    "build:test": "env-cmd -e test react-scripts build",
+    "start:dev": "env-cmd -e dev react-scripts start",
+    "build:dev": "env-cmd -e dev react-scripts build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

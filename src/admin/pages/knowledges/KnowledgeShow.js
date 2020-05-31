@@ -39,7 +39,7 @@ const KnowledgeShow = props => {
     }, [page, isLoading]);
   
     const openModal = (e, {_id, title, createdAt}) => {
-      setmodal({show: true, categoryId: _id, content: `Ready to delete ${title} created at ${createdAt}`})
+      setmodal({show: true, knowledgeId: _id, content: `Ready to delete ${title} created at ${createdAt}`})
     }
   
     const handleChange = event => {
@@ -122,6 +122,7 @@ const KnowledgeShow = props => {
                     <table className="table table-striped projects">
                     <thead>
                       <tr>
+                        <th style={{ width: "20%" }}>ID</th>
                         <th style={{ width: "20%" }}>Title</th>
                         <th style={{ width: "20%" }}>Created at</th>
                         <th style={{ width: "30%"}} className="text-center">Actions</th>
@@ -130,6 +131,9 @@ const KnowledgeShow = props => {
                     <tbody>
                       {knowledges.map((knowledge, index) => (
                         <tr key={knowledge._id}>
+                        <td>
+                          { knowledge._id}
+                        </td>
                         <td>
                           { knowledge.title}
                         </td>

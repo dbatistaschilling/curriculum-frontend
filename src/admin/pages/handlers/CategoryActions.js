@@ -1,6 +1,6 @@
 import axios from '../../../axios';
 
-export const getCategory = (id, setCategory, setIsloading) => {
+export const getCategory = (id, setCategory) => {
     const token = localStorage.getItem('token')
     axios.get(`/category/${id}`, {
         headers: {
@@ -8,15 +8,14 @@ export const getCategory = (id, setCategory, setIsloading) => {
         }
     })
     .then(response => {
-        setCategory(response.data.category)    
-        setIsloading(true);
+        setCategory(response.data.category);
     })
     .catch(err => {
         console.log(err.response);
     })
 }
 
-export const getCategories = (params, setCategories, setIsloading) => {
+export const getCategories = (params, setCategories) => {
     const token = localStorage.getItem('token')
     axios.get(`/categories${params}`, {
         headers: {
@@ -24,8 +23,7 @@ export const getCategories = (params, setCategories, setIsloading) => {
         }
     })
     .then(response => {
-        setCategories(response.data.categories)
-        setIsloading(false);        
+        setCategories(response.data.categories);
     })
     .catch(err => {
         console.log(err.response);

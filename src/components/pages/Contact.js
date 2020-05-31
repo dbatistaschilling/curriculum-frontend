@@ -34,6 +34,9 @@ const Contact = props => {
       clientEmailOnSubmit(e, clientMail, setClientEmail);
     }
 
+    console.log(process.env.REACT_APP_MAPS_API);
+    
+
     return (
         <footer id="mh-contact">
         <div className="node-image image-bg">
@@ -159,7 +162,7 @@ const Contact = props => {
                   {/* <div className="shadow-1" id="google-map"></div> */}
                   <Map
                     className="shadow-1"
-                    googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo&v=3.exp&libraries=geometry,drawing,places"
+                    googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_API}&v=3.exp&libraries=geometry,drawing,places`}
                     loadingElement={<div style={{ height: `100%` }} />}
                     containerElement={<div style={{ height: `400px` }} />}
                     mapElement={<div style={{ height: `100%` }} />}

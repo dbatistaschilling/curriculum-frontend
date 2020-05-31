@@ -1,7 +1,7 @@
 const axios = require('axios').default;
 
 const instance = axios.create({
-    baseURL: 'http://localhost:8080',
+    baseURL: process.env.REACT_APP_SERVER_URL,
     // headers: {'X-Custom-Header': 'foobar'}
   });
 

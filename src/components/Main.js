@@ -22,7 +22,8 @@ class Main extends Component {
     isLoading: true,
     profile: {},
     address: '',
-    notification: false
+    notification: false,
+    error: false
 	}
 
   componentDidMount () {
@@ -72,29 +73,62 @@ class Main extends Component {
               amount: result.data.knowledges.length
             }
           });
-        })
-        // console.log(this.state.categories);
-        
-
+        })        
       })
       .catch(err => {
           console.log(err);
-      })
-
+          this.setState({
+            ...this.state,
+            error: true
+          });
+      });
     })
+    .catch(err => {
+      console.log(err);
+      this.setState({
+        ...this.state,
+        error: true
+      });
+    });
 
   }
   
   
   render() {
-    // console.log(this.state);
+    console.log(this.state);
     
     return (
       <div>
         <MailNotification show={this.state.notification} dismiss={this.setState} appState={this.state} />
         {this.state.isLoading ?
           <div>
-                <Loader />
+              {this.state.error ?
+                <div>
+                  <Navigation />
+                  <Element name="#mh-home" className="element">
+                    <Home />
+                  </Element>
+                  <Element name="#mh-about" className="element">
+                    <About />
+                  </Element>
+                  <Element name="#mh-courses" className="element">
+                    <Service />
+                  </Element>
+                  <Element name="#mh-skills" className="element">
+                    <Skill />
+                  </Element>
+                  <Element name="#mh-experience" className="element">
+                    <Experience />
+                  </Element>
+                  <Element name="#mh-contact" className="element">
+                    <Contact />
+                  </Element>
+                </div>
+              :
+                <div>
+                  <Loader />
+                </div>
+              }
           </div>
             :
           <div>

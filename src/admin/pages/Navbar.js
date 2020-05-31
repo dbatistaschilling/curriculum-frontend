@@ -46,6 +46,8 @@ const Navbar = props => {
         })
         .catch(err => {
             console.log(err.response);
+            localStorage.clear();
+            return props.router.push("/admin/login")
         })
     }
 
