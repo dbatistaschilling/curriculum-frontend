@@ -63,7 +63,7 @@ class Navigation extends Component {
     scroll.scrollMore(100);
   };
   handleSetActive(to) {
-    console.log(to);
+    // console.log(to);
   };
 
   handleScroll = () => {

@@ -54,7 +54,6 @@ class Admin extends React.Component {
     }
                 
     componentDidMount() {
-        // console.log(localStorage.getItem(this.state.isAuth));
         this.onCreation();
     }
     

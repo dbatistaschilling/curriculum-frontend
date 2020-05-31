@@ -27,7 +27,6 @@ class Main extends Component {
 	}
 
   componentDidMount () {
-
     document.body.className="dark-vertion black-bg";
 
     if (localStorage.getItem('emailSent')){
@@ -94,9 +93,7 @@ class Main extends Component {
   }
   
   
-  render() {
-    console.log(this.state);
-    
+  render() {    
     return (
       <div>
         <MailNotification show={this.state.notification} dismiss={this.setState} appState={this.state} />

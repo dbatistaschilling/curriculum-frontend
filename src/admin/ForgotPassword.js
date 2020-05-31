@@ -13,7 +13,6 @@ const ForgotPassword = props => {
         setForgotPassword({
             [event.target.name]: event.target.value
         });
-        console.log(forgotPassword);
         
     }
 
