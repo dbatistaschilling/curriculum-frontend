@@ -7,8 +7,10 @@
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Davi Schilling Curriculum Website"
     />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta http-equiv="Content-Security-Policy" content="block-all-mixed-content">
     <!-- <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" /> -->
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -34,7 +36,7 @@
     <link rel="shortcut icon" sizes="114x114" href="%PUBLIC_URL%/assets/images/apple-icon-114x114.png">
     
     <!-- Google Font-->
-    <!-- <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css"> -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
     <!-- Font Awesome -->
     <link rel="stylesheet" type="text/css" href="%PUBLIC_URL%/assets/icons/font-awesome-4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap CSS -->
@@ -90,6 +92,26 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
 
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-analytics.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyD-009ZBnk72a9hYXXfPjb7KUei_87-Zuc",
+        authDomain: "davi-schilling.firebaseapp.com",
+        databaseURL: "https://davi-schilling.firebaseio.com",
+        projectId: "davi-schilling",
+        storageBucket: "davi-schilling.appspot.com",
+        messagingSenderId: "842307053515",
+        appId: "1:842307053515:web:acf88dec4139db4531784e",
+        measurementId: "G-1J9VVNZF1F"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
   </body>
 </html>

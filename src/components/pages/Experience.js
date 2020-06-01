@@ -2,7 +2,10 @@ import React from 'react';
 // import { Link } from 'react-router-dom';
 
 const Experience = props => {
-
+    // if (props.educations){
+    //     console.log(props.educations.knowledges);
+    // }
+    
     
     return (
         <section className="mh-experince" id="mh-experience">
@@ -20,13 +23,16 @@ const Experience = props => {
                                         <div className="mh-education-item dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
                                         {/* <h4>Art &amp; Multimedia From <a href="#">Oxford University</a></h4> */}
                                         <div className="mh-eduyear">
-                                        {`${new Intl.DateTimeFormat("en-US", {
-                                                year: "numeric"
-                                            }).format(new Date(education.initialDate))} - 
-                                            ${new Intl.DateTimeFormat("en-US", {
-                                                year: "numeric"
-                                            }).format(new Date(education.finalDate))}
-                                        `}
+                                        {
+                                        
+                                                `${new Intl.DateTimeFormat("en-US", {
+                                                    year: "numeric"
+                                                }).format(new Date(education.initialDate))} - 
+                                                 ${education.finalDate ? new Intl.DateTimeFormat("en-US", {
+                                                    year: "numeric"
+                                                }).format(new Date(education.finalDate)) : education.courseSituation}
+                                                `
+                                        }
                                         </div>
                                         <h4>{education.title}</h4>
                                         <a href={education.url}>{education.note} - </a>
@@ -49,13 +55,15 @@ const Experience = props => {
                                         <div className="mh-work-item dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">
                                             {/* <h4>UI/UX Designer <a href="#">IronSketch</a></h4> */}
                                             <div className="mh-eduyear">
-                                            {`${new Intl.DateTimeFormat("en-US", {
-                                                year: "numeric"
-                                            }).format(new Date(work.initialDate))} - 
-                                            ${new Intl.DateTimeFormat("en-US", {
-                                                year: "numeric"
-                                            }).format(new Date(work.finalDate))}
-                                            `}
+                                            {
+                                                `${new Intl.DateTimeFormat("en-US", {
+                                                    year: "numeric"
+                                                }).format(new Date(work.initialDate))} - 
+                                                ${work.finalDate ? new Intl.DateTimeFormat("en-US", {
+                                                    year: "numeric"
+                                                }).format(new Date(work.finalDate)) : work.courseSituation}
+                                                `
+                                            }
                                             </div>
                                             <h4>{work.title}</h4>
                                             <span>details:</span>

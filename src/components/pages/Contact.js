@@ -32,10 +32,7 @@ const Contact = props => {
 
     const handleOnSubmit = (e, clientMail, setClientEmail) => {      
       clientEmailOnSubmit(e, clientMail, setClientEmail);
-    }
-
-    console.log(process.env.REACT_APP_MAPS_API);
-    
+    }    
 
     return (
         <footer id="mh-contact">
