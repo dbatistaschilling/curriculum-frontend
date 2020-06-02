@@ -10,16 +10,17 @@ const service = props => {
             </div>
             { props.courses ?
                 props.courses.knowledges.map((course, index) => (
-                  <div className="col-md-4 col-sm-12" key={course._id}>
+                  <div className="col-md-4 col-sm-12" key={course._id} style={{marginBottom: '30px'}}>
                     <div className="mh-service-item shadow-1 dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
                       {/* <i className="fab fa-js purple-color" /> */}
-                      <h3>{course.title}</h3>
-                      <p>
-                        {`${new Intl.DateTimeFormat("en-US", {
+                      <spam style={{color: '#0bceaf'}}>{course.title}</spam><br/><br/>
+                      <small>Finished on
+                        {` ${new Intl.DateTimeFormat("en-US", {
                             month: "2-digit",
                             year: "numeric"
                           }).format(new Date(course.finalDate))} - ${course.duration}hrs duration - ${course.note}`}
-                      </p>
+                      </small><br/><br/>
+                      <a href={course.url} target="_blank" rel="noopener noreferrer">See certificate</a>
                     </div>
                   </div>
                 ))

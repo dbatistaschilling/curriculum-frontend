@@ -8,7 +8,8 @@ class Navigation extends Component {
     this.state = {
       btnMenu: false,
       scrollPixelsY: 0,
-      onTop: true
+      onTop: true,
+      home: true
     };
 
     // This binding is necessary to make `this` work in the callback
@@ -25,6 +26,14 @@ class Navigation extends Component {
       this.setState({ btnMenu: false }); 
     }
 
+    let ul = document.querySelector('.navbar-nav.mr-auto.ml-auto');
+    let lastActive = ul.querySelector('.active');
+    
+    lastActive.classList.toggle('active')
+    e.target.parentElement.classList.add('active');
+    // console.log(e.target.parentElement);
+    
+
   };
 
   componentDidMount() {
@@ -35,7 +44,7 @@ class Navigation extends Component {
     });
 
     Events.scrollEvent.register('end', function(to, element) {
-      // console.log("end", arguments);
+      // console.log("end", arguments);      
     });
 
     scrollSpy.update();
@@ -103,7 +112,6 @@ class Navigation extends Component {
                         offset={-70}
                         duration={500}
                         className="nav-link"
-                        activeClass="active"
                         to="#mh-home">Home</Link>
                     </li>
                     <li className="nav-item">

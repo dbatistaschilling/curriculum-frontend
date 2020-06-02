@@ -31,7 +31,6 @@ const About = props => {
                             </ul>
                             </div>
                             <Link to="/files/curriculum - Davi Schilling2.pdf" target="_blank" download className="btn btn-fill wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">Download CV <i className="fa fa-download" /></Link>
-                            {/* <a href="../Files/curriculum - Davi Schilling2.pdf" download className="btn btn-fill wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">Downlaod CV <i className="fa fa-download" /></a> */}
                         </div>
                         </div>
                     </div>

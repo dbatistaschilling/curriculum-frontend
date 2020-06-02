@@ -1,11 +1,6 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
 
 const Experience = props => {
-    // if (props.educations){
-    //     console.log(props.educations.knowledges);
-    // }
-    
     
     return (
         <section className="mh-experince" id="mh-experience">

@@ -18,9 +18,9 @@ const Experience = (props) => {
                         <li className="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.6s"><i className="fa fa-map-marker" /><address>{props.address}</address></li>
                     </ul>
                     <ul className="social-icon wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.7s">
-                        <li><a href="https://www.facebook.com/davi.schilling1"><i className="fab fa-2x fa-facebook" style={{marginRight: '10px'}}/></a></li>
+                        <li><a href="https://www.facebook.com/davi.schilling1" target="_blank" rel="noopener noreferrer"><i className="fab fa-2x fa-facebook" style={{marginRight: '10px'}}/></a></li>
                         {/* <li><a href="#"><i className="fa fa-twitter" /></a></li> */}
-                        <li><a href="https://github.com/dbatistaschilling"><i className="fab fa-2x fa-github" /></a></li>
+                        <li><a href="https://github.com/dbatistaschilling" target="_blank" rel="noopener noreferrer"><i className="fab fa-2x fa-github" /></a></li>
                         {/* <li><a href="#"><i className="fa fa-dribbble" /></a></li> */}
                     </ul>
                     </div>
