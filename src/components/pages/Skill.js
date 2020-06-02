@@ -4,7 +4,7 @@ import Chart from '../layouts/Chart';
 const skill = props => {
 
     return (
-      <section className="mh-skills" id="mh-skills">
+      <section className="mh-skills" id="mh-skills" style={{marginBottom: '20px'}}>
       <div className="container">
           <div className="row section-separator">
               <div className="section-title text-center col-sm-12">
