@@ -11,9 +11,9 @@ const footer = (props) => {
           </div>
           <div className="col-sm-6">
             <ul className="social-icon wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.7s">
-              <li><a href="https://www.facebook.com/davi.schilling1"><i className="fab fa-2x fa-facebook" /></a></li>
+              <li><a href="https://www.facebook.com/davi.schilling1" target="_blank" rel="noopener noreferrer" ><i className="fab fa-2x fa-facebook" /></a></li>
               {/* <li><a href="#"><i className="fa fa-twitter" /></a></li> */}
-              <li><a href="https://github.com/dbatistaschilling"><i className="fab fa-2x fa-github" /></a></li>
+              <li><a href="https://github.com/dbatistaschilling" target="_blank" rel="noopener noreferrer" ><i className="fab fa-2x fa-github" /></a></li>
               {/* <li><a href="#"><i className="fa fa-dribbble" /></a></li> */}
             </ul>
           </div>

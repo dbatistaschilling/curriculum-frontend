@@ -28,7 +28,7 @@ const Experience = (props) => {
                 <div className="col-sm-6">
                     <div className="hero-img wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.6s">
                     <div className="img-border">
-                        <img src="assets/images/foto_perfil.jpg" alt="" className="img-fluid" />
+                        <img src="assets/images/foto_perfil.png" alt="" className="img-fluid" />
                     </div>
                     </div>
                 </div>
