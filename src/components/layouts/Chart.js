@@ -37,7 +37,7 @@ const Chart = props => {
 
     return (
         <ResponsiveContainer width={300} aspect={1.0}>
-          <RadialBarChart width="50%" height="50%" cx={150} cy={150} innerRadius={20} outerRadius={140} barSize={20} data={state.data} >
+          <RadialBarChart width="50%" height="50%" cx={150} cy={150} innerRadius={20} outerRadius={140} barSize={20} data={state.data} style={{marginLeft: '40px', marginBottom: '20px'}} >
               <RadialBar minAngle={15} label={{ position: 'insideStart', fill: '#100e17' }} background clockWise dataKey="uv" />
               <Legend iconSize={15} width={250} height={140} layout="vertical" verticalAlign="middle" align="left" wrapperStyle={style} />
           </RadialBarChart>
