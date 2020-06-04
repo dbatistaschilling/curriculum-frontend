@@ -6,7 +6,7 @@ const footer = (props) => {
         <div className="row">
           <div className="col-sm-6">
             <div className="text-left text-xs-center">
-              <p><a href="templateshub.net">Templates Hub</a></p>
+              <p><a href="https://www.templateshub.net" target="_blank" rel="noopener noreferrer" >Templates Hub</a></p>
             </div>
           </div>
           <div className="col-sm-6">
